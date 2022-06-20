@@ -1,0 +1,23 @@
+services:
+  shop_db:
+    container_name: shop_db
+    image: postgres:14.3-alpine  
+    volumes:    
+      - shop_db:/var/lib/postgresql/data  
+    env_file:    
+      - .env
+  shop_api:  
+    container_name: shop_api 
+    build: .  
+    depends_on:    
+      - shop_db  
+    volumes:    
+      - .:/app  
+    ports:    
+      - 9016:80  
+    command: ["python", "/app/manage.py", "runserver", "0:80"]  
+    env_file:    
+      - .env
+
+volumes:
+  shop_db:
