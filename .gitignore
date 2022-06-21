@@ -1,4 +1,5 @@
 .env
-images/*
+images
+media
 *.pyc
 celerybeat-schedule

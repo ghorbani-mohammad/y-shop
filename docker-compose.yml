@@ -42,6 +42,7 @@ services:
     command: ["celery", "-A", "shop", "worker", "-l", "info"]
     volumes:
       - .:/app
+      - ./media:/app/shop/media
     depends_on:
       - shop_db
       - shop_redis
