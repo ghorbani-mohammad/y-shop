@@ -2,3 +2,5 @@ django
 djangorestframework
 pillow
 psycopg2
+celery
+redis

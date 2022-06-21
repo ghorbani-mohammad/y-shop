@@ -6,6 +6,7 @@ services:
       - shop_db:/var/lib/postgresql/data  
     env_file:    
       - .env
+
   shop_api:  
     container_name: shop_api 
     build: .  
@@ -15,9 +16,35 @@ services:
       - .:/app  
     ports:    
       - 9016:80  
-    command: ["python", "/app/manage.py", "runserver", "0:80"]  
+    command: ["python", "/app/shop/manage.py", "runserver", "0:80"]  
     env_file:    
       - .env
+
+  shop_redis:
+    container_name : shop_redis
+    image: redis:6.2-alpine
+
+  shop_beat:
+    container_name: shop_beat
+    build: .
+    working_dir: /app/shop
+    command: ["celery", "-A", "shop", "beat", "-l", "info"]
+    volumes:
+      - .:/app
+    depends_on:
+      - shop_db
+      - shop_redis    
+
+  shop_worker:
+    container_name: shop_worker
+    build: .
+    working_dir: /app/shop
+    command: ["celery", "-A", "shop", "worker", "-l", "info"]
+    volumes:
+      - .:/app
+    depends_on:
+      - shop_db
+      - shop_redis
 
 volumes:
   shop_db:

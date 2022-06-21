@@ -1,3 +1,4 @@
 .env
 images/*
 *.pyc
+celerybeat-schedule
