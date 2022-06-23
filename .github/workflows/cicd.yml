@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     container: python:3.10
     steps:
-      - name: install dependencies
       - uses: actions/checkout@v2
+      - name: install dependencies
         run: |
           apt-get update && apt-get install --no-install-recommends -y binutils libproj-dev gdal-bin python3-gdal
           pip install -r requirements.txt
@@ -23,8 +23,8 @@ jobs:
     container: docker:20.10.17
     needs: test
     steps:
-      - name: build
       - uses: actions/checkout@v2
+      - name: build
         run: |
           docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
           docker build -t techwithmike/shop:v1.0 .
