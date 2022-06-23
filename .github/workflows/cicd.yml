@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: install dependencies
         run: |
-          apt-get update && apt-get install --no-install-recommends -y binutils vim-tiny libproj-dev gdal-bin python3-gdal
+          apt-get update && apt-get install --no-install-recommends -y binutils libproj-dev gdal-bin python3-gdal
           pip install -r requirements.txt
       - name: run django test
         run: |
