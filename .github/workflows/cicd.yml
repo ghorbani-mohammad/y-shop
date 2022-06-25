@@ -42,7 +42,7 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSHKEY }}
-          run: |
+          script: |
             docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
             docker pull techwithmike/shop:v1.0
             cd ${{ secrets.SERVER_PROJECT_PATH }} 
