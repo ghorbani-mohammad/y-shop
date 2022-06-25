@@ -38,10 +38,11 @@ jobs:
       - name: deploy
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.PROD_SERVER_IP }}
-          username: ${{ secrets.PROD_SERVER_USERNAME }}
-          KEY: ${{ secrets.PROD_SSHKEY }}
+          host: ${{ secrets.SERVER_IP }}
+          port: ${{ secrets.SERVER_PORT }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSHKEY }}
           script: >
-            cd ${{ secrets.PROD_PROJECT_PATH }} 
-            && git pull 
-            && ./mng-api.sh up
+            docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
+            docker pull techwithmike/shop:v1.0
+            cd ${{ secrets.SERVER_PROJECT_PATH }} 
