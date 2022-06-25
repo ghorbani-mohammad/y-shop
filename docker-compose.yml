@@ -9,7 +9,7 @@ services:
 
   shop_api:  
     container_name: shop_api 
-    build: .  
+    image: techwithmike/shop:v1.0
     depends_on:    
       - shop_db  
     volumes:    
@@ -26,7 +26,7 @@ services:
 
   shop_beat:
     container_name: shop_beat
-    build: .
+    image: techwithmike/shop:v1.0
     working_dir: /app/shop
     command: ["celery", "-A", "shop", "beat", "-l", "info"]
     volumes:
@@ -37,7 +37,7 @@ services:
 
   shop_worker:
     container_name: shop_worker
-    build: .
+    image: techwithmike/shop:v1.0
     working_dir: /app/shop
     command: ["celery", "-A", "shop", "worker", "-l", "info"]
     volumes:
