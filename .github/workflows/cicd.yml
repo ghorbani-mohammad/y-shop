@@ -15,9 +15,9 @@ jobs:
           apt-get update && apt-get install --no-install-recommends -y binutils libproj-dev gdal-bin python3-gdal
           pip install -r requirements.txt
       - name: run django test
-        run:
-          python shop/manage.py test
-
+        run: |
+          cd shop
+          python manage.py test
   build:
     runs-on: ubuntu-latest
     container: docker:20.10.17
