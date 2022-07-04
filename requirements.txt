@@ -1,6 +1,7 @@
+celery
 django
+django-elasticsearch-dsl
 djangorestframework
 pillow
 psycopg2
-celery
 redis
