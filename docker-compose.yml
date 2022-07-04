@@ -15,7 +15,7 @@ services:
     volumes:    
       - .:/app  
     ports:    
-      - 9016:80  
+      - 9022:80  
     command: ["python", "/app/shop/manage.py", "runserver", "0:80"]  
     env_file:    
       - .env
