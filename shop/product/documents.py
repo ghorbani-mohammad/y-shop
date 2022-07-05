@@ -1,4 +1,4 @@
-from django_elasticsearch_dsl import Document, Index
+from django_elasticsearch_dsl import Document, Index, fields
 
 from .models import Product
 
@@ -11,6 +11,8 @@ product_index.settings(
 
 @product_index.doc_type
 class ProductDocument(Document):
+    name = fields.TextField(attr="name", fields={"suggest": fields.Completion()})
+
     class Django:
         model = Product
-        fields = ["id", "name", "price"]
+        fields = ["id", "price"]

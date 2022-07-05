@@ -1,6 +1,7 @@
 celery
 django
 django-elasticsearch-dsl
+django-elasticsearch-dsl-drf
 djangorestframework
 pillow
 psycopg2
