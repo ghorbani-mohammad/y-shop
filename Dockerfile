@@ -16,3 +16,5 @@ COPY --from=base /usr/local/lib/python3.10/site-packages/ /usr/local/lib/python3
 COPY --from=base /usr/local/bin/ /usr/local/bin/
 COPY . /app
 ENV PYTHONUNBUFFERED 1
+
+CMD ["gunicorn", "--reload", "--timeout=300", "--workers=2", "--worker-tmp-dir", "/dev/shm", "--bind=0.0.0.0:80", "--chdir", "/app/shop", "shop.wsgi"]
