@@ -1,5 +1,6 @@
 .env
-images
-media
+.vscode
 *.pyc
 celerybeat-schedule
+images
+media
