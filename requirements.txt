@@ -2,6 +2,7 @@ celery
 django
 django-environ
 djangorestframework
+gunicorn
 pillow
 psycopg2
 redis
