@@ -18,6 +18,8 @@ jobs:
         run: |
           cd shop
           python manage.py test
+        env:
+          BUILD_TEST: true
   build:
     runs-on: ubuntu-latest
     container: docker:20.10.17

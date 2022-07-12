@@ -1,6 +1,7 @@
+celery
 django
+django-environ
 djangorestframework
 pillow
 psycopg2
-celery
 redis
