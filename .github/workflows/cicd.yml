@@ -20,6 +20,7 @@ jobs:
           python manage.py test
         env:
           BUILD_TEST: true
+          SECRET_KEY: xx
   build:
     runs-on: ubuntu-latest
     container: docker:20.10.17

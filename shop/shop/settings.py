@@ -23,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-$xjx!ws6-=5pmkdpt#v9p6lp0f#&+xnw6v-vd^1w5hr9y8lcn+"
+SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = []
 
@@ -77,17 +77,19 @@ WSGI_APPLICATION = "shop.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "HOST": "shop_db",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "secret",
-    }
-}
+
 if BUILD_TEST:
     DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3"}}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "HOST": "shop_db",
+            "NAME": "postgres",
+            "USER": "postgres",
+            "PASSWORD": env.str("POSTGRES_PASSWORD"),
+        }
+    }
 
 
 # Password validation
