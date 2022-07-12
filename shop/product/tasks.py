@@ -5,6 +5,7 @@ from django.core.files.base import File
 
 from . import models
 
+
 @shared_task()
 def create_product_thumbnail(product_id):
     product = models.Product.objects.get(pk=product_id)
