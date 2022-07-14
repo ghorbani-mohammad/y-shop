@@ -1,7 +1,7 @@
 services:
   shop_db:
     container_name: shop_db
-    image: postgres:14.3-alpine  
+    image: postgres:14.4-alpine  
     volumes:    
       - shop_db:/var/lib/postgresql/data  
     env_file:    
@@ -22,7 +22,7 @@ services:
 
   shop_redis:
     container_name : shop_redis
-    image: redis:6.2-alpine
+    image: redis:7.0.3-alpine
 
   shop_beat:
     container_name: shop_beat

@@ -21,6 +21,7 @@ jobs:
         env:
           BUILD_TEST: true
           SECRET_KEY: xx
+          REDIS_HOST: xx
   build:
     runs-on: ubuntu-latest
     container: docker:20.10.17
@@ -30,8 +31,8 @@ jobs:
       - name: build
         run: |
           docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
-          docker build -t techwithmike/shop:v1.3 .
-          docker push techwithmike/shop:v1.3
+          docker build -t techwithmike/shop:v1.4 .
+          docker push techwithmike/shop:v1.4
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -45,6 +46,6 @@ jobs:
           key: ${{ secrets.SERVER_SSHKEY }}
           script: |
             docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
-            docker pull techwithmike/shop:v1.3
+            docker pull techwithmike/shop:v1.4
             cd ${{ secrets.SERVER_PROJECT_PATH }}
             docker-compose up -d
