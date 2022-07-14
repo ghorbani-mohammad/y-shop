@@ -84,7 +84,7 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "HOST": "shop_db",
+            "HOST": env.str("DB_HOST"),
             "NAME": "postgres",
             "USER": "postgres",
             "PASSWORD": env.str("POSTGRES_PASSWORD"),
