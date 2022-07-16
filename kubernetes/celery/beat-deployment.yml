@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-beat
+  labels:
+    deployment: celery-beat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      pod: celery-beat
+  template:
+    metadata:
+      labels:
+        pod: celery-beat
+    spec:
+      containers:
+        - name: celery-beat
+          image: techwithmike/shop:v1.4
+          command: ['sh', '-c', "cd /app/shop && celery -A shop beat -l INFO"]
+          envFrom:
+            - secretRef:
+                name: shop-secret
+            - configMapRef:
+                name: shop-config

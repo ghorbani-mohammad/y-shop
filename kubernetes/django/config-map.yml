@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shop-config
+data:
+  DEBUG: "True"
+  REDIS_HOST: shop-redis
+  DB_HOST: shop-db
