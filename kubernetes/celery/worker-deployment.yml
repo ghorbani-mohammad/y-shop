@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-worker
+  labels:
+    deployment: celery-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      pod: celery-worker
+  template:
+    metadata:
+      labels:
+        pod: celery-worker
+    spec:
+      containers:
+        - name: celery-worker
+          image: techwithmike/shop:v1.4
+          command: ['sh', '-c', "cd /app/shop && celery -A shop worker -l INFO"]
+          envFrom:
+            - secretRef:
+                name: shop-secret
+            - configMapRef:
+                name: shop-config
+          volumeMounts:
+            - name: media-volume-mount
+              mountPath: /app/shop/media
+      volumes:
+        - name: media-volume-mount
+          persistentVolumeClaim:
+            claimName: media-pvc
