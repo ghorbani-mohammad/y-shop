@@ -33,7 +33,9 @@ services:
       - .:/app
     depends_on:
       - shop_db
-      - shop_redis    
+      - shop_redis
+    env_file:    
+      - .env
 
   shop_worker:
     container_name: shop_worker
@@ -46,6 +48,8 @@ services:
     depends_on:
       - shop_db
       - shop_redis
+    env_file:    
+      - .env
 
 volumes:
   shop_db:
